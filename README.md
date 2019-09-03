@@ -2,6 +2,14 @@
 
 Playing with OpenCV.
 
+## Requirements
+|        | version |
+|--------|:-------:|
+| python |   3.7   |
+| opencv |   4.1   |
+|        |         |
+
+
 ## How to run
 1. Clone this repo. `git clone git@github.com:PatDuJour/opencv.git`
 2. Build virtualenv. `virtualenv venv -p python3`
