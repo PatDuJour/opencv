@@ -7,7 +7,6 @@ Playing with OpenCV.
 |--------|:-------:|
 | python |   3.7   |
 | opencv |   4.1   |
-|        |         |
 
 
 ## How to run
