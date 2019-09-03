@@ -1,3 +1,9 @@
+"""
+Facial and eye detection using haar cascades.
+Draw green rectangle around faces.
+Draw blue rectangle around eyes.
+Exit by ctrl + C
+"""
 import cv2 as cv
 
 
@@ -5,18 +11,18 @@ def clock():
     return cv.getTickCount() / cv.getTickFrequency()
 
 
-def draw_str(dst, target, s):
+def draw_str(dst, target, _str):
     x, y = target
     cv.putText(
         dst,
-        s, (x + 1, y + 1),
+        _str, (x + 1, y + 1),
         cv.FONT_HERSHEY_PLAIN,
         1.0, (0, 0, 0),
         thickness=2,
         lineType=cv.LINE_AA)
     cv.putText(
         dst,
-        s, (x, y),
+        _str, (x, y),
         cv.FONT_HERSHEY_PLAIN,
         1.0, (255, 255, 255),
         lineType=cv.LINE_AA)
@@ -54,7 +60,6 @@ def main():
         eye_cascade = cv.CascadeClassifier(
             './venv/lib/python3.7/site-packages/cv2/data/haarcascade_eye.xml'
         )
-
         t = clock()
         rects = detect(gray, face_cascade)
         vis = img.copy()
@@ -66,10 +71,14 @@ def main():
                 subrects = detect(roi.copy(), eye_cascade)
                 draw_rects(vis_roi, subrects, (255, 0, 0))
         dt = clock() - t
+
         draw_str(vis, (20, 20), 'time: %.1f ms' % (dt*1000))
         cv.imshow('facedetect', vis)
 
-    cap.release()
+        if cv.waitKey(5) == 27:
+            break
+
+    vdcp.release()
 
 
 if __name__ == '__main__':
